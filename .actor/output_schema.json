@@ -1,0 +1,26 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Google Trends results",
+  "properties": {
+    "reports": {
+      "type": "string",
+      "title": "Reports",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "rows": {
+      "type": "string",
+      "title": "Spreadsheet rows",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=rows"
+    },
+    "trending": {
+      "type": "string",
+      "title": "Trending now",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=trending"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Run summary",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    }
+  }
+}
