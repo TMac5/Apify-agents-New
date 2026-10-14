@@ -1,0 +1,147 @@
+{
+  "title": "Google Trends input",
+  "description": "Get Google Trends data for any search terms: interest over time, by region, related queries and topics, plus ready-made insights. Optionally add today's trending searches for any country.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchTerms": {
+      "title": "Search terms",
+      "type": "array",
+      "description": "Keywords or phrases to look up. You can also use Google Knowledge Graph topic IDs such as /m/05p0rrx (Bitcoin the topic), which Google treats more precisely than plain text.",
+      "editor": "stringList",
+      "prefill": ["bitcoin", "ethereum"]
+    },
+    "compareTerms": {
+      "title": "Compare terms against each other",
+      "type": "boolean",
+      "description": "On: terms share one 0–100 scale, in groups of up to 5 (Google's limit) — use this to see which term is bigger. Off: every term gets its own report and its own scale.",
+      "default": false
+    },
+    "geos": {
+      "title": "Countries or regions",
+      "type": "array",
+      "description": "Two-letter country codes (US, DE, LT) or regions (US-CA, GB-ENG). Each location gets its own report. Leave empty for worldwide; add WORLDWIDE to include it alongside countries.",
+      "editor": "stringList"
+    },
+    "timeRange": {
+      "title": "Time range",
+      "type": "string",
+      "description": "Period to analyse. Choose Custom to set exact dates below.",
+      "editor": "select",
+      "enum": ["now 1-H", "now 4-H", "now 1-d", "now 7-d", "today 1-m", "today 3-m", "today 12-m", "today 5-y", "all", "custom"],
+      "enumTitles": ["Past hour", "Past 4 hours", "Past day", "Past 7 days", "Past 30 days", "Past 90 days", "Past 12 months", "Past 5 years", "2004 – present", "Custom"],
+      "default": "today 12-m"
+    },
+    "customTimeRange": {
+      "title": "Custom time range",
+      "type": "string",
+      "description": "Used only when Time range is Custom. Dates: \"2024-01-01 2024-12-31\". Hours (UTC, within the past week): \"2026-10-10T08 2026-10-12T20\".",
+      "editor": "textfield"
+    },
+    "category": {
+      "title": "Category ID",
+      "type": "integer",
+      "description": "Google Trends category to search in (0 = all). Find the ID in the cat= part of a Trends URL, e.g. 7 = Finance, 5 = Computers & Electronics.",
+      "default": 0,
+      "minimum": 0
+    },
+    "searchProperty": {
+      "title": "Search type",
+      "type": "string",
+      "description": "Which Google search to measure.",
+      "editor": "select",
+      "enum": ["web", "images", "news", "froogle", "youtube"],
+      "enumTitles": ["Web search", "Image search", "News search", "Google Shopping", "YouTube search"],
+      "default": "web"
+    },
+    "includeInterestOverTime": {
+      "title": "Interest over time",
+      "type": "boolean",
+      "description": "Timeline of search interest (0–100), with peak, latest value and recent momentum calculated for you.",
+      "default": true,
+      "sectionCaption": "Data to collect"
+    },
+    "includeInterestByRegion": {
+      "title": "Interest by region",
+      "type": "boolean",
+      "description": "Where each term is searched most.",
+      "default": true
+    },
+    "regionResolution": {
+      "title": "Region breakdown",
+      "type": "string",
+      "description": "Automatic picks countries for worldwide searches, regions/states for a country, and cities for a region.",
+      "editor": "select",
+      "enum": ["AUTO", "COUNTRY", "REGION", "CITY", "DMA"],
+      "enumTitles": ["Automatic", "Countries", "Regions / states", "Cities", "US metro areas (DMA)"],
+      "default": "AUTO"
+    },
+    "includeLowVolumeRegions": {
+      "title": "Include low-volume regions",
+      "type": "boolean",
+      "description": "Also return regions with little search volume.",
+      "default": false
+    },
+    "includeRelatedQueries": {
+      "title": "Related queries",
+      "type": "boolean",
+      "description": "Top and rising searches people make alongside each term, including \"Breakout\" queries (growth over 5000%).",
+      "default": true
+    },
+    "includeRelatedTopics": {
+      "title": "Related topics",
+      "type": "boolean",
+      "description": "Top and rising related topics, with Knowledge Graph IDs.",
+      "default": true
+    },
+    "outputFormat": {
+      "title": "Output format",
+      "type": "string",
+      "description": "Reports: one rich JSON item per term (best for APIs and AI agents). Spreadsheet rows: one flat row per date, region, query and topic (best for CSV, Excel and Google Sheets). The price is the same.",
+      "editor": "select",
+      "enum": ["reports", "rows"],
+      "enumTitles": ["Reports (one item per term)", "Spreadsheet rows (flat)"],
+      "default": "reports",
+      "sectionCaption": "Output"
+    },
+    "trendingNowGeos": {
+      "title": "Trending now: countries",
+      "type": "array",
+      "description": "Two-letter country codes (US, GB, DE…). Returns today's trending searches with traffic estimates and news links. Works with or without search terms.",
+      "editor": "stringList",
+      "sectionCaption": "Trending now"
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Language for topic names and date labels, e.g. en-US, de, lt.",
+      "editor": "textfield",
+      "default": "en-US",
+      "sectionCaption": "Advanced"
+    },
+    "maxConcurrency": {
+      "title": "Parallel sessions",
+      "type": "integer",
+      "description": "How many reports to fetch at once, each through its own IP. Higher is faster for long lists but invites more rate-limiting.",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "maxAttemptsPerRequest": {
+      "title": "Max attempts per request",
+      "type": "integer",
+      "description": "How many fresh IPs to try when Google rate-limits a request.",
+      "default": 8,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "proxyConfiguration": {
+      "title": "Proxy",
+      "type": "object",
+      "description": "Residential proxies are strongly recommended: Google rate-limits datacenter IPs quickly.",
+      "editor": "proxy",
+      "default": { "useApifyProxy": true, "apifyProxyGroups": ["RESIDENTIAL"], "apifyProxyCountry": "US" },
+      "prefill": { "useApifyProxy": true, "apifyProxyGroups": ["RESIDENTIAL"], "apifyProxyCountry": "US" }
+    }
+  }
+}
