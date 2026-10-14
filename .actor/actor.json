@@ -1,0 +1,14 @@
+{
+  "actorSpecification": 1,
+  "name": "google-trends-reliable",
+  "title": "Google Trends Scraper — Reliable, With Regions, Related & Trending Now",
+  "description": "Google Trends for any keyword: interest over time, by country/region/city, related & breakout queries and topics, plus ready-made insights (peak, momentum, top regions) and today's trending searches. Built to survive Google's rate limits.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "defaultRunOptions": { "memoryMbytes": 512, "timeoutSecs": 1800 },
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile"
+}
