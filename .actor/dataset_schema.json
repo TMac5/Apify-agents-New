@@ -1,0 +1,167 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Reports",
+      "transformation": {
+        "fields": [
+          "title",
+          "summary",
+          "missingSections",
+          "trendsUrl",
+          "scrapedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": {
+            "label": "Report",
+            "format": "text"
+          },
+          "summary": {
+            "label": "Summary",
+            "format": "text"
+          },
+          "missingSections": {
+            "label": "Missing",
+            "format": "array"
+          },
+          "trendsUrl": {
+            "label": "Open in Google Trends",
+            "format": "link"
+          },
+          "scrapedAt": {
+            "label": "Scraped",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "rows": {
+      "title": "Spreadsheet rows",
+      "transformation": {
+        "fields": [
+          "type",
+          "term",
+          "geo",
+          "date",
+          "regionName",
+          "list",
+          "rank",
+          "query",
+          "topic",
+          "value",
+          "formattedValue",
+          "direction",
+          "recentChangePercent",
+          "isPartial"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "type": {
+            "label": "Row type",
+            "format": "text"
+          },
+          "term": {
+            "label": "Term",
+            "format": "text"
+          },
+          "geo": {
+            "label": "Geo",
+            "format": "text"
+          },
+          "date": {
+            "label": "Date",
+            "format": "date"
+          },
+          "regionName": {
+            "label": "Region",
+            "format": "text"
+          },
+          "list": {
+            "label": "Top / rising",
+            "format": "text"
+          },
+          "rank": {
+            "label": "Rank",
+            "format": "number"
+          },
+          "query": {
+            "label": "Query",
+            "format": "text"
+          },
+          "topic": {
+            "label": "Topic",
+            "format": "text"
+          },
+          "value": {
+            "label": "Value",
+            "format": "number"
+          },
+          "formattedValue": {
+            "label": "Shown as",
+            "format": "text"
+          },
+          "direction": {
+            "label": "Direction",
+            "format": "text"
+          },
+          "recentChangePercent": {
+            "label": "Recent change %",
+            "format": "number"
+          },
+          "isPartial": {
+            "label": "Partial period",
+            "format": "boolean"
+          }
+        }
+      }
+    },
+    "trending": {
+      "title": "Trending now",
+      "transformation": {
+        "fields": [
+          "geo",
+          "rank",
+          "title",
+          "approxTraffic",
+          "publishedAt",
+          "news"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "geo": {
+            "label": "Country",
+            "format": "text"
+          },
+          "rank": {
+            "label": "Rank",
+            "format": "number"
+          },
+          "title": {
+            "label": "Search",
+            "format": "text"
+          },
+          "approxTraffic": {
+            "label": "Approx. searches",
+            "format": "text"
+          },
+          "publishedAt": {
+            "label": "Started",
+            "format": "date"
+          },
+          "news": {
+            "label": "News",
+            "format": "array"
+          }
+        }
+      }
+    }
+  }
+}
