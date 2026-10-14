@@ -7,6 +7,7 @@
   "buildTag": "latest",
   "defaultRunOptions": { "memoryMbytes": 512, "timeoutSecs": 1800 },
   "input": "./input_schema.json",
+  "output": "./output_schema.json",
   "storages": {
     "dataset": "./dataset_schema.json"
   },
